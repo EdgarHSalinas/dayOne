@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Card }     from './card';
 
-import { AppBar }  from './app-bar.component'
+import { AppBar }  from './ui/app-bar.component'
 
 const CARDS: Card[] = [
   {id: 1, title: 'Monday', note: 'Went to Work'},
