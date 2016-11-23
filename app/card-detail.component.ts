@@ -10,6 +10,8 @@ import { Card }     from './card';
     <div>
       <label>title: </label>
       <input [(ngModel)]="card.title" placeholder="title"/>
+      <label>Note: </label>
+      <input [(ngModel)]="card.note" placeholder="note"/>
     </div>
   </div>
 `

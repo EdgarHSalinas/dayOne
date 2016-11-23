@@ -1,25 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Card }     from './card';
 
-import { AppBar }  from './ui/app-bar.component'
+import { CardService} from './card.service';
 
-const CARDS: Card[] = [
-  {id: 1, title: 'Monday', note: 'Went to Work'},
-  {id: 2, title: 'Tuesday', note: 'did a work out'},
-  {id: 3, title: 'Wednesday', note: 'did weights'},
-  {id: 4, title: 'Thursday', note: 'did a work out'},
-  {id: 5, title: 'Friday', note: 'went running'},
-]
+
 
 
 @Component({
   selector: 'my-app',
   template: `
-    <div class ="my-app">
-
-      <app-bar>  </app-bar>
-
+    
     <h1>{{title}}</h1>
 
     <h2>Journal History</h2>
@@ -34,8 +25,6 @@ const CARDS: Card[] = [
       </ul>
 
     <my-card-detail [card]="selectedCard"></my-card-detail>
-  
-    </div>
   
     `,
   
@@ -87,15 +76,27 @@ const CARDS: Card[] = [
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+  providers: [CardService]
 })
 
 
-export class AppComponent { 
+export class AppComponent implements OnInit {
   title = 'Day One';
-  cards = CARDS;
-
+  cards : Card[];
   selectedCard: Card;
+
+  constructor(private cardService: CardService) { }
+
+  getCards(): void {
+    this.cardService.getCards().then(cards => this.cards = cards);
+  }
+
+
+
+  ngOnInit(): void {
+    this.getCards();
+  }
 
   onSelect(card: Card): void {
     this.selectedCard = card;
