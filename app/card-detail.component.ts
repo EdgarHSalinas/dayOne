@@ -1,24 +1,36 @@
-import { Component, Input } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Card }     from './card';
+import { CardService } from './card.service';
+
 
 @Component({
+    moduleId: module.id,
     selector: 'my-card-detail',
-    template: `
-  <div *ngIf="card">
-    <h2>{{card.note}} details!</h2>
-    <div><label>id: </label>{{card.id}}</div>
-    <div>
-      <label>title: </label>
-      <input [(ngModel)]="card.title" placeholder="title"/>
-      <label>Note: </label>
-      <input [(ngModel)]="card.note" placeholder="note"/>
-    </div>
-  </div>
-`
+    templateUrl: 'card-detail.component.html',
+    styleUrls: ['card-detail.component.css']
 })
 
-export class CardDetailComponent {
-  @Input()
+export class CardDetailComponent implements OnInit {
   card: Card;
+
+  constructor(
+    private cardService: CardService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
+
+  ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.cardService.getCard(+params['id']))
+      .subscribe(card => this.card = card);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 
 }
