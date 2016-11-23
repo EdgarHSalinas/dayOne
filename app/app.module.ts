@@ -5,7 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { AppComponent }  from './app.component';
 import {CardDetailComponent} from './card-detail.component';
 
-import { AppBar } from './app-bar.component'
+import { AppBar } from './ui/app-bar.component'
 
 @NgModule({
   imports: [
