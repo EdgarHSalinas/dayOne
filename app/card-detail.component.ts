@@ -32,5 +32,9 @@ export class CardDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+  save(): void {
+    this.cardService.update(this.card)
+      .then(() => this.goBack());
+  }
 
 }

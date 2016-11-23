@@ -39,4 +39,22 @@ export class CardsComponent implements OnInit {
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedCard.id]);
   }
+  add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
+    this.cardService.create(title)
+      .then(card => {
+        this.cards.push(card);
+        this.selectedCard = null;
+    });
+  }
+
+  delete(card: Card): void {
+    this.cardService
+      .delete(card.id)
+      .then(() => {
+        this.cards = this.cards.filter(c => c !== card);
+        if (this.selectedCard === card) { this.selectedCard = null; }
+      });
+}
 }

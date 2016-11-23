@@ -1,4 +1,11 @@
   <h2>Journal History</h2>
+  <div>
+  <label>Card title:</label> <input #cardName />
+  <button (click)="add(cardName.value); cardName.value=''">
+    Add
+  </button>
+</div>
+
 
       <ul class="cards">
 
@@ -6,6 +13,8 @@
           [class.selected]="card === selectedCard"
           (click)="onSelect(card)">
         <span class="badge">{{card.id}}</span> {{card.title}}
+        <button class="delete"
+            (click)="delete(card); $event.stopPropagation()">x</button>
         </li>
       </ul>
 
