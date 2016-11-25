@@ -12,7 +12,9 @@
         <li *ngFor="let card of cards"
           [class.selected]="card === selectedCard"
           (click)="onSelect(card)">
-        <span class="badge">{{card.id}}</span> {{card.title}}
+        <span class="badge">{{card.id}}</span> 
+        {{card.title}} &nbsp;
+        &nbsp;
         <button class="delete"
             (click)="delete(card); $event.stopPropagation()">x</button>
         </li>

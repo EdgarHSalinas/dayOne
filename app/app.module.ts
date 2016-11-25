@@ -16,6 +16,7 @@ import {CardDetailComponent} from './card-detail.component';
 import { CardsComponent }  from './cards.component';
 import { CardService }  from './card.service';
 import { CardSearchComponent }  from './card-search.component';
+import { CardCreator } from './card-creator.component'
 
 
 
@@ -36,7 +37,8 @@ import { CardSearchComponent }  from './card-search.component';
     NavComponent,
     CardDetailComponent,
     CardsComponent,
-    CardSearchComponent
+    CardSearchComponent,
+    CardCreator
     
   ],
   providers: [CardService],
